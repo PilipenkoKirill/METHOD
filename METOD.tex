@@ -1,0 +1,156 @@
+\documentclass[14pt,a4paper, oneside]{memoir}
+
+%% Пользовательские пакеты
+\usepackage{latexsym,amsmath,amssymb,amsbsy,graphicx}
+\graphicspath{{images/}}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+%%%%%%%%%%%%%%%%%%%%%%%%Оформление
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage[14pt]{extsizes} % для того чтобы задать нестандартный 14-ый размер шрифта
+\usepackage{indentfirst}
+\setlength\parindent{1.25cm}
+\usepackage[a4paper, left=3cm, top=1.5cm, right=1.5cm, bottom=2cm]{geometry}
+\usepackage{setspace}
+\usepackage{caption} %заголовки плавающих объектов
+\captionsetup[figure]{name=Рис.}
+\sloppy
+%%% Кастомизация разделов
+\usepackage{titlesec}
+\titleformat
+{\section} % command
+[block] % shape
+{\normalfont\bfseries\itshape} % format
+{\thesection. }{0.5em}{} % label
+\titleformat
+{\chapter} % command
+[block] % shape
+{\bfseries\huge} % format
+{Глава \thechapter }{0.5em}{} % label
+% \onehalfspacing %\полуторный интервал
+\renewcommand{\chaptertitlename}{Глава}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{bm}
+\numberwithin{equation}{section} % номер формулы теперь зависит от номера секции
+%%%% Оформление header
+\clearmark{section}
+\makeatletter
+\createmark{chapter}{both}{shownumber}{\@chapapp\ }{. \ }
+\makeatother
+%Библиография
+\usepackage{polyglossia}
+\setdefaultlanguage{english} %язык по умолчанию
+% \setdefaultlanguage{ru} %язык по умолчанию
+\setotherlanguage{russian} %все остальные
+\setotherlanguage{german}
+\usepackage[% 
+backend=biber, %подключение пакета biber (тоже нужен)
+bibstyle=gost-numeric, %подключение одного из четырех главных стилей biblatex-gost 
+citestyle=numeric-comp, %подключение стиля стиля (а вот!) 
+language=autobib,
+language=auto, %указание сортировки языков
+babel=other, %указание языков
+sorting=ntvy, %тип сортировки в библиографии
+doi=false, 
+eprint=false, 
+isbn=false, 
+dashed=false, 
+url=false %все false выключают отображение полей, заполненных в библиографической базе, но не актуальных для печатного листа
+]{biblatex}
+\bibliography{external} % имя bib-файла, содержащего библиографическую базу
+\DefineBibliographyStrings{english}{%
+  bibliography = {Список литературы},
+  references = {Список литературы},
+}
+\newcommand\solving{\begin{center}
+  Решение:
+\end{center}}
+
+%% Управление компиляцией
+\includeonly{idealGas}
+% \includeonly{VDVGas}
+%%%
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+  \textbf{ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ \\ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ \\ ВЫСШЕГО ОБРАЗОВАНИЯ \\
+  <<БРЯНСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ \\ ИМЕНИ АКАДЕМИКА И.Г. ПЕТРОВСКОГО>>}
+  
+  \vspace{0pt plus4fill}
+  
+  \textbf{\large Г. В. Егоров}
+
+  \vspace{0pt plus1fill}
+
+  \textbf{\Large Сборник вопросов и задач по термодинамике \\ 2-е издание}
+
+  \vspace{0pt plus4fill}
+
+  \textbf{БРЯНСК \the\year}
+\end{center}
+\clearpage
+\tableofcontents
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}} %В содержании появляются только главы
+\clearpage
+
+ББК
+
+Е -
+
+Егоров Г. В. Сборник вопросов и задач по термодинамике. - Брянск:
+Издательство БГУ , \the\year. - 80 с.
+
+Пособие предназначено для студентов педагогических вузов, изучающих
+термодинамику в рамках курса теоретической физики. В него включены
+задачи и контрольные вопросы по всем разделам курса термодинамики.
+Многие задачи приводятся с подробными решениями. Кроме задач в книге
+дается краткое изложение основных теоретических положений, которые
+должны быть прочно усвоены студентами. Для ответа на контрольные вопросы
+студентам необходимо изучить литературу, список которой приводится в
+конце книги. В каждой главе данного пособия даются ссылки с указанием
+глав и параграфов соответствующей книги, рекомендуемых для изучения.
+
+Рецензенты:
+
+% Такунов Л.В. - кандидат физико-математических наук, доцент
+
+% кафедры физики БГТУ
+
+Попов П.А. - доктор физико-математических наук,
+
+профессор кафедры экспериментальной и теоретической физики
+
+% Печатается по решению совета ФМФ БГПУ от
+
+% Редактор Лозинский В.П.
+
+Издательство Брянского государственного университета
+
+имени академика И.Г. Петровского
+
+241036, Брянск, ул. Бежицкая 14.
+
+% ЛР N 020070 от 25.04.97
+
+Подписано в печать. Формат 60×84 1/16. Усл. п. л. 5,0.
+
+Тираж 100 экз. Заказ N .
+
+\textcopyright Издательство БГУ, \the\year г.
+\clearpage
+
+\include{foreword}
+\include{idealGas}
+\include{equationOfState}
+\include{initialPositionsOfThermodynamics}
+\include{SLTandEfficiency}
+\include{entropy}
+\include{VDVGas}
+\include{charactericticFunctions}
+\include{phaseTransitions}
+\include{literature}
+\include{answers}
+
+\end{document}
