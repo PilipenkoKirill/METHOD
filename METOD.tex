@@ -2,10 +2,13 @@
 
 %% Пользовательские пакеты
 \usepackage{latexsym,amsmath,amssymb,amsbsy,graphicx}
+\usepackage[hidelinks]{hyperref}
 \graphicspath{{images/}}
 \usepackage{wrapfig}
 \usepackage{tikz}
-\usetikzlibrary{patterns}
+\usetikzlibrary{patterns,arrows.meta, decorations.markings}
+%%%%%%%Подключение счётчиков и переменных
+\newcounter{shift}
 %%%%%%%%%%%%%%%%%%%%%%%%Оформление
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
@@ -18,6 +21,7 @@
 \captionsetup[figure]{name=Рис.}
 \sloppy
 %%% Кастомизация разделов
+% \renewcommand{\contentsname}{Содержание}
 \usepackage{titlesec}
 \titleformat
 {\section} % command
@@ -37,6 +41,7 @@
 %%%% Оформление header
 \clearmark{section}
 \makeatletter
+\renewcommand{\@chapapp}{Глава}
 \createmark{chapter}{both}{shownumber}{\@chapapp\ }{. \ }
 \makeatother
 %Библиография
@@ -64,12 +69,20 @@ url=false %все false выключают отображение полей, з
   bibliography = {Список литературы},
   references = {Список литературы},
 }
+%%%%%%%%%%%%%%%%%% Изменяет "Contents" на "Содержание"
+\addto\captionsenglish{%
+  \renewcommand{\contentsname}{Содержание}%
+}
+%%%%%%%%%%%%%
 \newcommand\solving{\begin{center}
   Решение:
 \end{center}}
 
 %% Управление компиляцией
-\includeonly{idealGas}
+% \includeonly{idealGas}
+% \includeonly{equationOfState}
+% \includeonly{initialPositionsOfThermodynamics}
+% \includeonly{SLTandEfficiency}
 % \includeonly{VDVGas}
 %%%
 \begin{document}
@@ -91,13 +104,14 @@ url=false %все false выключают отображение полей, з
   \textbf{БРЯНСК \the\year}
 \end{center}
 \clearpage
+\addtocontents{toc}{\setcounter{tocdepth}{-2}}
 \tableofcontents
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}} %В содержании появляются только главы
 \clearpage
 
-ББК
+% ББК
 
-Е -
+% Е -
 
 Егоров Г. В. Сборник вопросов и задач по термодинамике. - Брянск:
 Издательство БГУ , \the\year. - 80 с.
@@ -112,33 +126,36 @@ url=false %все false выключают отображение полей, з
 конце книги. В каждой главе данного пособия даются ссылки с указанием
 глав и параграфов соответствующей книги, рекомендуемых для изучения.
 
-Рецензенты:
+Если в тексте заметите какие-либо опечатки, не оставайтесь равнодушными~---~напишите о них на почту с указанием страницы и контекста:
 
-% Такунов Л.В. - кандидат физико-математических наук, доцент
+\href{mailto:www-kirill.pilipenko@yandex.ru}{www-kirill.pilipenko@yandex.ru}
+% Рецензенты:
 
-% кафедры физики БГТУ
+% % Такунов Л.В. - кандидат физико-математических наук, доцент
 
-Попов П.А. - доктор физико-математических наук,
+% % кафедры физики БГТУ
 
-профессор кафедры экспериментальной и теоретической физики
+% Попов П.А. - доктор физико-математических наук,
 
-% Печатается по решению совета ФМФ БГПУ от
+% профессор кафедры экспериментальной и теоретической физики
 
-% Редактор Лозинский В.П.
+% % Печатается по решению совета ФМФ БГПУ от
 
-Издательство Брянского государственного университета
+% % Редактор Лозинский В.П.
 
-имени академика И.Г. Петровского
+% Издательство Брянского государственного университета
 
-241036, Брянск, ул. Бежицкая 14.
+% имени академика И.Г. Петровского
 
-% ЛР N 020070 от 25.04.97
+% 241036, Брянск, ул. Бежицкая 14.
 
-Подписано в печать. Формат 60×84 1/16. Усл. п. л. 5,0.
+% % ЛР N 020070 от 25.04.97
 
-Тираж 100 экз. Заказ N .
+% Подписано в печать. Формат 60×84 1/16. Усл. п. л. 5,0.
 
-\textcopyright Издательство БГУ, \the\year г.
+% Тираж 100 экз. Заказ N .
+
+% \textcopyright Издательство БГУ, \the\year г.
 \clearpage
 
 \include{foreword}
